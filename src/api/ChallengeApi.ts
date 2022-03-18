@@ -6,8 +6,8 @@ class ChallengeApi extends Api {
         return response.data;
     }
 
-    async getUser(id: number) {
-        const response = await this.axios.get(`/users/${id}`)
+    async createUser(data: any) {
+        const response = await this.axios.post(`/post`, data)
         return response.data;
     }
 }

@@ -38,17 +38,10 @@ const Td = styled.td`
   cursor: pointer;
 `;
 
-
-const ModalContainer = styled.div`
-  position: relative;
-`
-
 const UsersTableRow: React.FC<ITableBodyRow> = ({ data }) => {
   
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false)
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState<boolean>(false)
   
-  // const urlAgentDetails = `/agents/${agent.agent_id}`
-
   return (
     <>
       <TrBody key={data.id} onClick={() => setShowUserDetailsModal(true)}>

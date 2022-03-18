@@ -5,17 +5,24 @@ interface IDetailsData {
   data: string;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  color: #587169;
+`;
 
-const Label = styled.span``;
+const Label = styled.p`
+  font-weight: 600;
+`;
 
-const Data = styled.span``;
+const Data = styled.p`
+  margin-left: 16px;
+`;
 
 
 const DetailsData: React.FC<IDetailsData> = ({label, data}) => {
   return (
     <Container>
-      <Label>{label}</Label>
+      <Label>{`${label}: `}</Label>
       <Data>{data}</Data>
     </Container>
   )

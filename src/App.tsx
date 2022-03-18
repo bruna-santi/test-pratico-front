@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { challengeApi } from './api/ChallengeApi';
+import AddNewModal from './components/AddNewModal';
 import Button from './components/Button';
 import PageTitle from './components/PageTitle';
 import UsersTable from './components/usersTable/UsersTable';
@@ -25,13 +26,13 @@ const Container = styled.div`
   width: 70%;
   height: 90%;
   margin-top: 50px;
-  /* border: 1px solid red; */
 `;
 
 const App = () => {
 
   const [users, setUsers] = useState<IUsers[]>([])
   const [usersCopy, setUsersCopy] = useState<IUsers[]>([])
+  const [showAddNewModal, setShowAddNewModal] = useState<boolean>(false)
 
   const fetchUsers = async () => {
     await challengeApi
@@ -59,6 +60,9 @@ const App = () => {
             }}
         />
       </Container>
+      {showAddNewModal &&
+        <AddNewModal setShowModal={setShowAddNewModal}/>
+      }
     </PageWrapper>
   );
 }
