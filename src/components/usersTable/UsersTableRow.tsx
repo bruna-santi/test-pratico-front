@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
+import DeleteUserModal from '../DeleteUserModal';
 import UserDetailsModal from '../UserDetailsModal';
 // import AgentModal from '../AgentModal';
 // import ThreeDotsIcon from '../ThreeDotsIcon';
@@ -8,6 +9,7 @@ import UserDetailsModal from '../UserDetailsModal';
 
 interface ITableBodyRow {
   data: any;
+  handleDeleteUser: (userId: number) => void;
 }
 
 const TrBody = styled.tr`
@@ -22,6 +24,10 @@ const TrBody = styled.tr`
   .emailCell {
     justify-content: space-between;
     margin-right: 12px;
+  }
+
+  .buttonCell {
+    justify-content: flex-end;
   }
 `;
 
@@ -38,19 +44,23 @@ const Td = styled.td`
   cursor: pointer;
 `;
 
-const UsersTableRow: React.FC<ITableBodyRow> = ({ data }) => {
+const UsersTableRow: React.FC<ITableBodyRow> = ({ data, handleDeleteUser }) => {
   
   const [showUserDetailsModal, setShowUserDetailsModal] = useState<boolean>(false)
+  const [showDeleteUserModal, setShowDeleteUserModal] = useState<boolean>(false)
+
   
   return (
     <>
-      <TrBody key={data.id} onClick={() => setShowUserDetailsModal(true)}>
-        <Td className='nameCell'>{data.name}</Td>
-        <Td className='emailCell'>
-          {data.email}
+      <TrBody key={data.id}>
+        <Td className='nameCell' onClick={() => setShowUserDetailsModal(true)}>{data.name}</Td>
+        <Td className='emailCell' onClick={() => setShowUserDetailsModal(true)}>{data.email}</Td>
+        <Td className='buttonCell'>
           <Button
             title='Excluir'
             style={{backgroundColor: '#D32F2F'}}
+            setShowModal={setShowDeleteUserModal}
+            showModal={showDeleteUserModal}
           />
         </Td>
       </TrBody>
@@ -58,7 +68,14 @@ const UsersTableRow: React.FC<ITableBodyRow> = ({ data }) => {
         <UserDetailsModal
           setShowModal={setShowUserDetailsModal}
           data={data}
-          // userId={data.id}
+        />
+      }
+      {showDeleteUserModal &&
+        <DeleteUserModal
+          setShowModal={setShowDeleteUserModal}
+          showModal={showDeleteUserModal}
+          userId={data.id}
+          handleDeleteUser={handleDeleteUser}
         />
       }
     </>

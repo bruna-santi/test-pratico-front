@@ -11,7 +11,7 @@ interface IUser {
 const UserDetailsModal: React.FC<IUser> = ({data, setShowModal}) => {
 
   return (
-    <ModalWrapper setShowModal={setShowModal}>
+    <ModalWrapper setShowModal={setShowModal} style={{width: '500px'}}>
         <PageTitle title='Detalhes' />
         <DetailsData label='Nome' data={data.name} />
         <DetailsData label='Email' data={data.email} />

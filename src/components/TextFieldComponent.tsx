@@ -10,11 +10,11 @@ interface ITextFieldComponent {
 }
 
 const Input = styled(TextField)`
-  margin: 0 50px 0 0;
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+  width: 48%;
 `;
 
 const TextFieldComponent: React.FC<ITextFieldComponent> = ({label, type, value, placeholder, setData}) => {

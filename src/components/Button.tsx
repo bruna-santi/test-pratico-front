@@ -3,7 +3,10 @@ import styled from 'styled-components';
 interface IButton {
   title: string;
   style?: any;
-  onClick?: any;
+  showModal?: boolean;
+  setShowModal?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleSave?: () => void;
+  handleDelete?: () => void;
 }
 
 const Btn = styled.button`
@@ -19,9 +22,20 @@ const Btn = styled.button`
   outline: none;
 `;
 
-const Button: React.FC<IButton> = ({title, style, onClick}) => {
+const Button: React.FC<IButton> = ({title, style, showModal, setShowModal, handleSave, handleDelete}) => {
+
+  const handleClick = () => {
+    if(setShowModal) {
+      setShowModal(!showModal)
+    } else if(handleSave) {
+      handleSave()
+    } else if(handleDelete) {
+      handleDelete()
+    }
+  }
+
   return (
-    <Btn style={style} onClick={onClick}>{title}</Btn>
+    <Btn style={style} onClick={handleClick}>{title}</Btn>
   )
 }
 

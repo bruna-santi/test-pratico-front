@@ -11,6 +11,7 @@ interface IUsers {
   email: string;
   phone: string;
   website: string;
+  id: number;
 }
 
 const PageWrapper = styled.div`
@@ -23,7 +24,7 @@ const PageWrapper = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 55%;
   height: 90%;
   margin-top: 50px;
 `;
@@ -46,22 +47,30 @@ const App = () => {
 
   useEffect(() => {fetchUsers()}, [])
 
+  const handleDeleteUser = (userId: number) => {
+    const filteredUsers = usersCopy.filter((user) => user.id !== userId)
+    setUsersCopy(filteredUsers)
+  }
+
   return (
     <PageWrapper>
       <Container>
         <PageTitle title='Usuários'/>
-        <UsersTable bodyData={users}/>
+        <UsersTable bodyData={usersCopy} handleDeleteUser={handleDeleteUser}/>
         <Button
           title='Adicionar Novo'
           style={{
             backgroundColor:'#1976D2',
             width: '150px',
-            marginTop: '24px'
+            marginTop: '32px'
             }}
+          showModal={showAddNewModal}
+          setShowModal={setShowAddNewModal}
+          // deleteUser={deleteUser}
         />
       </Container>
       {showAddNewModal &&
-        <AddNewModal setShowModal={setShowAddNewModal}/>
+        <AddNewModal setShowModal={setShowAddNewModal} showModal={showAddNewModal}/>
       }
     </PageWrapper>
   );

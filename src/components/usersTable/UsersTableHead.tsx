@@ -8,7 +8,6 @@ const TrHead = styled.tr`
   display: flex;
   width: 100%;
   border: 1px solid #CAD6D1;
-  /* background-color: #EAEFED; */
   background-color: #E5E5E5;
   border-radius: 8px 8px 0px 0px;
 `;
@@ -30,6 +29,7 @@ const UsersTableHead: React.FC<IUsersTableHead> = () => {
     <TrHead>
      <Th>Nome</Th>
      <Th>Email</Th>
+     <Th></Th>
     </TrHead>
   )
 }

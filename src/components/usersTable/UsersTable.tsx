@@ -5,11 +5,11 @@ import UsersTableHead from './UsersTableHead';
 interface IUsersTable {
   bodyData?: any;
   headerData?: any;
-  deleteUser?: any;
+  handleDeleteUser: (userId: number) => void;
 }
 
 const Table = styled.table`
-  width: 90%;
+  width: 100%;
 `;
 
 const Thead = styled.thead`
@@ -20,7 +20,7 @@ const Tbody = styled.tbody`
   width: 100%;
 `;
 
-const UsersTable: React.FC<IUsersTable> = ({ bodyData, headerData, deleteUser }) => {
+const UsersTable: React.FC<IUsersTable> = ({ bodyData, headerData, handleDeleteUser }) => {
   return (
     <Table>
       <Thead>
@@ -29,7 +29,7 @@ const UsersTable: React.FC<IUsersTable> = ({ bodyData, headerData, deleteUser })
       <Tbody>
         {bodyData.map((data: any) => {
           return (
-            <UsersTableRow data={data} key={data.id}/>
+            <UsersTableRow data={data} key={data.id} handleDeleteUser={handleDeleteUser}/>
           )
         })}
       </Tbody>

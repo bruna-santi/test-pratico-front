@@ -18,7 +18,6 @@ const Data = styled.p`
   margin-left: 16px;
 `;
 
-
 const DetailsData: React.FC<IDetailsData> = ({label, data}) => {
   return (
     <Container>
