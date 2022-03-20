@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { ApplicationContext } from '../../context/ApplicationContextProvider';
 import { IUser } from '../../interfaces';
 import Button from '../Button';
 import DeleteUserModal from '../DeleteUserModal';
-import UserDetailsModal from '../UserDetailsModal';
 
 interface ITableBodyRow {
   data: IUser;
@@ -43,15 +43,20 @@ const Td = styled.td`
 `;
 
 const UsersTableRow: React.FC<ITableBodyRow> = ({data, handleDeleteUser}) => {
-  
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState<boolean>(false)
+  const {setSelectedUser, setShowUserDetailsModal} = useContext(ApplicationContext)
+
   const [showDeleteUserModal, setShowDeleteUserModal] = useState<boolean>(false)
   
+  const handleShowUserDetail = () => {
+    setShowUserDetailsModal(true)
+    setSelectedUser(data)
+  }
+
   return (
     <>
       <TrBody key={data.id}>
-        <Td className='nameCell' onClick={() => setShowUserDetailsModal(true)}>{data.name}</Td>
-        <Td className='emailCell' onClick={() => setShowUserDetailsModal(true)}>{data.email}</Td>
+        <Td className='nameCell' onClick={() => handleShowUserDetail()}>{data.name}</Td>
+        <Td className='emailCell' onClick={() => handleShowUserDetail()}>{data.email}</Td>
         <Td className='buttonCell'>
           <Button
             title='Excluir'
@@ -61,12 +66,6 @@ const UsersTableRow: React.FC<ITableBodyRow> = ({data, handleDeleteUser}) => {
           />
         </Td>
       </TrBody>
-      {showUserDetailsModal && 
-        <UserDetailsModal
-          setShowModal={setShowUserDetailsModal}
-          data={data}
-        />
-      }
       {showDeleteUserModal &&
         <DeleteUserModal
           setShowModal={setShowDeleteUserModal}

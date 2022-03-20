@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { challengeApi } from './api/ChallengeApi';
 import AddNewModal from './components/AddNewModal';
 import Button from './components/Button';
 import PageTitle from './components/PageTitle';
+import UserDetailsModal from './components/UserDetailsModal';
 import UsersTable from './components/usersTable/UsersTable';
+import { ApplicationContext } from './context/ApplicationContextProvider';
 import { IUser } from './interfaces';
 
 const PageWrapper = styled.div`
@@ -23,6 +25,7 @@ const Container = styled.div`
 `;
 
 const Home = () => {
+  const {showUserDetailsModal, setShowUserDetailsModal} = useContext(ApplicationContext)
 
   const [users, setUsers] = useState<IUser[]>([])
   const [showAddNewModal, setShowAddNewModal] = useState<boolean>(false)
@@ -53,7 +56,10 @@ const Home = () => {
     <PageWrapper>
       <Container>
         <PageTitle title='Usuários'/>
-        <UsersTable bodyData={users} handleDeleteUser={handleDeleteUser}/>
+        <UsersTable
+          bodyData={users}
+          handleDeleteUser={handleDeleteUser}
+        />
         <Button
           title='Adicionar Novo'
           style={{
@@ -70,6 +76,11 @@ const Home = () => {
           setShowModal={setShowAddNewModal}
           showModal={showAddNewModal}
           handleAddUser={handleAddUser}
+        />
+      }
+      {showUserDetailsModal && 
+        <UserDetailsModal
+          setShowModal={setShowUserDetailsModal}
         />
       }
     </PageWrapper>

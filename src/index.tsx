@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './Home';
 import reportWebVitals from './reportWebVitals';
+import ApplicationContextProvider from './context/ApplicationContextProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
+  <ApplicationContextProvider>
+    <React.StrictMode>
+      <Home />
+    </React.StrictMode>,
+  </ApplicationContextProvider>,
   document.getElementById('root')
 );
 
