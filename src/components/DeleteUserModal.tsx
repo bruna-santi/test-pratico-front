@@ -20,6 +20,7 @@ const DeleteUserModal: React.FC<IDeleteUserModal> = ({showModal, setShowModal, u
 
   const handleDelete = () => {
     handleDeleteUser(userId)
+    setShowModal(!showModal)
   }
 
   return (
@@ -28,8 +29,6 @@ const DeleteUserModal: React.FC<IDeleteUserModal> = ({showModal, setShowModal, u
       <ButtonsContainer>
         <Button
           title='Confirmar'
-          setShowModal={setShowModal}
-          showModal={showModal}
           handleDelete={handleDelete}
           style={{backgroundColor: '#2E7D32', width: '120px'}}
         />

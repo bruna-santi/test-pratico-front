@@ -9,6 +9,7 @@ import TextFieldComponent from './TextFieldComponent';
 interface IAddNewModal {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleAddUser: (name: string, email: string, phone: string, site: string) => void;
 }
 
 const InputsContainer = styled.div`
@@ -25,7 +26,7 @@ const ButtonsContainer = styled.div`
   margin-top: 15px;
 `;
 
-const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal}) => {
+const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAddUser}) => {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -39,6 +40,7 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal}) => {
 
   const handleSave = () => {
     handleCreateUser()
+    handleAddUser(name, email, phone, site)
     setShowModal(false)
   }
 
@@ -61,7 +63,8 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal}) => {
       </InputsContainer>
       <InputsContainer>
         <TextFieldComponent
-          label='Telefone' type='number' 
+          label='Telefone'
+          type='number' 
           value={phone} 
           placeholder='Telefone' 
           setData={setPhone}

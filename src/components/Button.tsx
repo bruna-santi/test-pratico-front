@@ -22,8 +22,14 @@ const Btn = styled.button`
   outline: none;
 `;
 
-const Button: React.FC<IButton> = ({title, style, showModal, setShowModal, handleSave, handleDelete}) => {
-
+const Button: React.FC<IButton> = ({
+  title,
+  style,
+  showModal,
+  setShowModal,
+  handleSave,
+  handleDelete,
+}) => {
   const handleClick = () => {
     if(setShowModal) {
       setShowModal(!showModal)

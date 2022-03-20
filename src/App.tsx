@@ -45,11 +45,15 @@ const App = () => {
       .catch(error => console.log(error))
   }
 
-  useEffect(() => {fetchUsers()}, [])
+  useEffect(() => { fetchUsers() }, [])
 
   const handleDeleteUser = (userId: number) => {
     const filteredUsers = usersCopy.filter((user) => user.id !== userId)
     setUsersCopy(filteredUsers)
+  }
+
+  const handleAddUser = (name: string, email: string, phone: string, site: string) => {
+    usersCopy.push({name, email, phone, website: site, id: Math.random()})
   }
 
   return (
@@ -70,7 +74,11 @@ const App = () => {
         />
       </Container>
       {showAddNewModal &&
-        <AddNewModal setShowModal={setShowAddNewModal} showModal={showAddNewModal}/>
+        <AddNewModal
+          setShowModal={setShowAddNewModal}
+          showModal={showAddNewModal}
+          handleAddUser={handleAddUser}
+        />
       }
     </PageWrapper>
   );

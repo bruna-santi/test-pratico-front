@@ -17,10 +17,16 @@ const Input = styled(TextField)`
   width: 48%;
 `;
 
-const TextFieldComponent: React.FC<ITextFieldComponent> = ({label, type, value, placeholder, setData}) => {
+const TextFieldComponent: React.FC<ITextFieldComponent> = ({
+  label,
+  type,
+  value,
+  placeholder,
+  setData,
+}) => {
+  
   return (
     <Input
-      id="outlined-basic"
       label={label}
       variant="outlined"
       type={type}
