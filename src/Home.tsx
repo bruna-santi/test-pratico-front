@@ -5,14 +5,7 @@ import AddNewModal from './components/AddNewModal';
 import Button from './components/Button';
 import PageTitle from './components/PageTitle';
 import UsersTable from './components/usersTable/UsersTable';
-
-interface IUsers {
-  name: string;
-  email: string;
-  phone: string;
-  website: string;
-  id: number;
-}
+import { IUser } from './interfaces';
 
 const PageWrapper = styled.div`
   display: flex;
@@ -29,10 +22,9 @@ const Container = styled.div`
   margin-top: 50px;
 `;
 
-const App = () => {
+const Home = () => {
 
-  const [users, setUsers] = useState<IUsers[]>([])
-  const [usersCopy, setUsersCopy] = useState<IUsers[]>([])
+  const [users, setUsers] = useState<IUser[]>([])
   const [showAddNewModal, setShowAddNewModal] = useState<boolean>(false)
 
   const fetchUsers = async () => {
@@ -40,27 +32,28 @@ const App = () => {
       .getUsers()
       .then(response => {
         setUsers(response)
-        setUsersCopy(response)
       })
       .catch(error => console.log(error))
   }
 
-  useEffect(() => { fetchUsers() }, [])
+  useEffect(() => {
+    fetchUsers()
+  }, [])
 
   const handleDeleteUser = (userId: number) => {
-    const filteredUsers = usersCopy.filter((user) => user.id !== userId)
-    setUsersCopy(filteredUsers)
+    const filteredUsers = users.filter((user) => user.id !== userId)
+    setUsers(filteredUsers)
   }
 
   const handleAddUser = (name: string, email: string, phone: string, site: string) => {
-    usersCopy.push({name, email, phone, website: site, id: Math.random()})
+    users.push({name, email, phone, website: site, id: Math.random()})
   }
 
   return (
     <PageWrapper>
       <Container>
         <PageTitle title='Usuários'/>
-        <UsersTable bodyData={usersCopy} handleDeleteUser={handleDeleteUser}/>
+        <UsersTable bodyData={users} handleDeleteUser={handleDeleteUser}/>
         <Button
           title='Adicionar Novo'
           style={{
@@ -70,7 +63,6 @@ const App = () => {
             }}
           showModal={showAddNewModal}
           setShowModal={setShowAddNewModal}
-          // deleteUser={deleteUser}
         />
       </Container>
       {showAddNewModal &&
@@ -84,4 +76,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Home;

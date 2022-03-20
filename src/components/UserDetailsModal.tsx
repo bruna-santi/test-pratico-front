@@ -1,14 +1,13 @@
-import styled from 'styled-components';
 import DetailsData from './DetailsData';
 import ModalWrapper from './ModalWrapper';
 import PageTitle from './PageTitle';
 
-interface IUser {
+interface IUserDetailsModal {
   data?: any;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const UserDetailsModal: React.FC<IUser> = ({data, setShowModal}) => {
+const UserDetailsModal: React.FC<IUserDetailsModal> = ({data, setShowModal}) => {
 
   return (
     <ModalWrapper setShowModal={setShowModal} style={{width: '500px'}}>

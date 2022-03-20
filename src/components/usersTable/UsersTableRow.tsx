@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { IUser } from '../../interfaces';
 import Button from '../Button';
 import DeleteUserModal from '../DeleteUserModal';
 import UserDetailsModal from '../UserDetailsModal';
-// import AgentModal from '../AgentModal';
-// import ThreeDotsIcon from '../ThreeDotsIcon';
-// import { IStatus } from '../../src/interfaces';
 
 interface ITableBodyRow {
-  data: any;
+  data: IUser;
   handleDeleteUser: (userId: number) => void;
 }
 
@@ -44,11 +42,10 @@ const Td = styled.td`
   cursor: pointer;
 `;
 
-const UsersTableRow: React.FC<ITableBodyRow> = ({ data, handleDeleteUser }) => {
+const UsersTableRow: React.FC<ITableBodyRow> = ({data, handleDeleteUser}) => {
   
   const [showUserDetailsModal, setShowUserDetailsModal] = useState<boolean>(false)
   const [showDeleteUserModal, setShowDeleteUserModal] = useState<boolean>(false)
-
   
   return (
     <>

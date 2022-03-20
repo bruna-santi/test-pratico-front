@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface IUsersTableHead {
-  headerData: any;
-}
-
 const TrHead = styled.tr`
   display: flex;
   width: 100%;
@@ -24,7 +20,7 @@ const Th = styled.th`
   color: #587169;
 `;
 
-const UsersTableHead: React.FC<IUsersTableHead> = () => {
+const UsersTableHead = () => {
   return (
     <TrHead>
      <Th>Nome</Th>

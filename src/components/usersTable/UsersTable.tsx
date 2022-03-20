@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import UsersTableRow from './UsersTableRow';
 import UsersTableHead from './UsersTableHead';
-
+import { IUser } from '../../interfaces';
+ 
 interface IUsersTable {
-  bodyData?: any;
-  headerData?: any;
+  bodyData: IUser[];
   handleDeleteUser: (userId: number) => void;
 }
 
@@ -20,11 +20,11 @@ const Tbody = styled.tbody`
   width: 100%;
 `;
 
-const UsersTable: React.FC<IUsersTable> = ({ bodyData, headerData, handleDeleteUser }) => {
+const UsersTable: React.FC<IUsersTable> = ({ bodyData, handleDeleteUser }) => {
   return (
     <Table>
       <Thead>
-        <UsersTableHead headerData={headerData} />
+        <UsersTableHead />
       </Thead>
       <Tbody>
         {bodyData.map((data: any) => {
