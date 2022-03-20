@@ -1,12 +1,11 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
+import { ApplicationContext } from '../context/ApplicationContextProvider';
 import Button from './Button';
 import ModalWrapper from './ModalWrapper';
 import PageTitle from './PageTitle';
 
 interface IDeleteUserModal {
-  showModal: boolean;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-  userId: number;
   handleDeleteUser: (userId: number) => void;
 }
 
@@ -16,15 +15,16 @@ const ButtonsContainer = styled.div`
   width: 52%;
 `;
 
-const DeleteUserModal: React.FC<IDeleteUserModal> = ({showModal, setShowModal, userId, handleDeleteUser}) => {
+const DeleteUserModal: React.FC<IDeleteUserModal> = ({handleDeleteUser}) => {
+  const {showDeleteUserModal, setShowDeleteUserModal, selectedUser} = useContext(ApplicationContext)
 
   const handleDelete = () => {
-    handleDeleteUser(userId)
-    setShowModal(!showModal)
+    handleDeleteUser(selectedUser.id)
+    setShowDeleteUserModal(!showDeleteUserModal)
   }
 
   return (
-    <ModalWrapper setShowModal={setShowModal} style={{width: '500px', height: '160px'}}>
+    <ModalWrapper setShowModal={setShowDeleteUserModal} style={{width: '500px', height: '160px'}}>
       <PageTitle title='Deseja excluir o usuário?'/>
       <ButtonsContainer>
         <Button
@@ -34,8 +34,8 @@ const DeleteUserModal: React.FC<IDeleteUserModal> = ({showModal, setShowModal, u
         />
         <Button
           title='Cancelar'
-          setShowModal={setShowModal}
-          showModal={showModal}
+          setShowModal={setShowDeleteUserModal}
+          showModal={showDeleteUserModal}
           style={{backgroundColor: '#E5E5E5', color: '#34423D', width: '120px'}}
         />
       </ButtonsContainer>

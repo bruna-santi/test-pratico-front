@@ -4,15 +4,11 @@ import DetailsData from './DetailsData';
 import ModalWrapper from './ModalWrapper';
 import PageTitle from './PageTitle';
 
-interface IUserDetailsModal {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const UserDetailsModal: React.FC<IUserDetailsModal> = ({setShowModal}) => {
-  const {selectedUser} = useContext(ApplicationContext)
+const UserDetailsModal = () => {
+  const {selectedUser, setShowUserDetailsModal} = useContext(ApplicationContext)
 
   return (
-    <ModalWrapper setShowModal={setShowModal} style={{width: '500px'}}>
+    <ModalWrapper setShowModal={setShowUserDetailsModal} style={{width: '500px'}}>
       <PageTitle title='Detalhes' />
       <DetailsData label='Nome' data={selectedUser.name} />
       <DetailsData label='Email' data={selectedUser.email} />

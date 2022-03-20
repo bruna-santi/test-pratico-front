@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { ApplicationContext } from '../../context/ApplicationContextProvider';
 import { IUser } from '../../interfaces';
 import Button from '../Button';
-import DeleteUserModal from '../DeleteUserModal';
 
 interface ITableBodyRow {
   data: IUser;
@@ -42,14 +41,22 @@ const Td = styled.td`
   cursor: pointer;
 `;
 
-const UsersTableRow: React.FC<ITableBodyRow> = ({data, handleDeleteUser}) => {
-  const {setSelectedUser, setShowUserDetailsModal} = useContext(ApplicationContext)
-
-  const [showDeleteUserModal, setShowDeleteUserModal] = useState<boolean>(false)
+const UsersTableRow: React.FC<ITableBodyRow> = ({data}) => {
+  const {
+    setSelectedUser,
+    setShowUserDetailsModal,
+    setShowDeleteUserModal,
+    showDeleteUserModal,
+  } = useContext(ApplicationContext)
   
   const handleShowUserDetail = () => {
     setShowUserDetailsModal(true)
     setSelectedUser(data)
+  }
+
+  const handleDelete = () => {
+    setSelectedUser(data)
+    setShowDeleteUserModal(!showDeleteUserModal)
   }
 
   return (
@@ -61,19 +68,10 @@ const UsersTableRow: React.FC<ITableBodyRow> = ({data, handleDeleteUser}) => {
           <Button
             title='Excluir'
             style={{backgroundColor: '#D32F2F'}}
-            setShowModal={setShowDeleteUserModal}
-            showModal={showDeleteUserModal}
+            handleDelete={handleDelete}
           />
         </Td>
       </TrBody>
-      {showDeleteUserModal &&
-        <DeleteUserModal
-          setShowModal={setShowDeleteUserModal}
-          showModal={showDeleteUserModal}
-          userId={data.id}
-          handleDeleteUser={handleDeleteUser}
-        />
-      }
     </>
   )
 }

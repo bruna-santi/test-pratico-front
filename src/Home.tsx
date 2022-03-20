@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { challengeApi } from './api/ChallengeApi';
 import AddNewModal from './components/AddNewModal';
 import Button from './components/Button';
+import DeleteUserModal from './components/DeleteUserModal';
 import PageTitle from './components/PageTitle';
 import UserDetailsModal from './components/UserDetailsModal';
 import UsersTable from './components/usersTable/UsersTable';
@@ -25,7 +26,7 @@ const Container = styled.div`
 `;
 
 const Home = () => {
-  const {showUserDetailsModal, setShowUserDetailsModal} = useContext(ApplicationContext)
+  const {showUserDetailsModal, showDeleteUserModal} = useContext(ApplicationContext)
 
   const [users, setUsers] = useState<IUser[]>([])
   const [showAddNewModal, setShowAddNewModal] = useState<boolean>(false)
@@ -79,8 +80,11 @@ const Home = () => {
         />
       }
       {showUserDetailsModal && 
-        <UserDetailsModal
-          setShowModal={setShowUserDetailsModal}
+        <UserDetailsModal />
+      }
+      {showDeleteUserModal &&
+        <DeleteUserModal
+          handleDeleteUser={handleDeleteUser}
         />
       }
     </PageWrapper>
