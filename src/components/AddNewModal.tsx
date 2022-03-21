@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  max-width: 400px;
+  min-width: 610px;
   height: 330px;
   background-color: #FFFFFF;
   padding: 28px;
@@ -25,23 +25,30 @@ const Container = styled.div`
 
   @media only screen and (max-width: 1200px) {
     width: 70%;
+    max-width: 490px;
     height: 440px;
-    padding: 20px;
-  }
-
-  @media only screen and (max-width: 600px) {
-    width: 83%;
-    height: 330px;
     padding: 20px;
   }
 
   @media only screen and (max-width: 800px) {
     width: 80%;
+    max-width: 500px;
+    min-width: 400px;
     height: 440px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 83%;
+    max-width: 500px;
+    min-width: 400px;
+    height: 330px;
+    padding: 20px;
   }
 
   @media only screen and (max-width: 480px) {
     width: 80%;
+    max-width: 400px;
+    min-width: 300px;
     height: 440px;
   }
 `;
@@ -68,9 +75,8 @@ const InputsContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 55%;
+  width: 230px;
   margin-top: 15px;
-  min-width: 230px;
 `;
 
 const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAddUser}) => {
