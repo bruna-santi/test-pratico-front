@@ -17,6 +17,11 @@ const InputsContainer = styled.div`
   justify-content: space-between;
   margin: 15px 0 15px 0;
   width: 100%;
+
+  @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      margin: 0;
+  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -24,6 +29,10 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
   width: 40%;
   margin-top: 15px;
+
+  @media only screen and (max-width: 600px) {
+      width: 67%;
+  }
 `;
 
 const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAddUser}) => {
@@ -32,33 +41,72 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [site, setSite] = useState('')
+  const [nameError, setNameError] = useState<boolean>(false)
+  const [emailError, setEmailError] = useState<boolean>(false)
+  const [phoneError, setPhoneError] = useState<boolean>(false)
+  const [siteError, setSiteError] = useState<boolean>(false)
 
   const handleCreateUser = async () => {
     await challengeApi
       .createUser({name, email, phone, site})
   }
 
+  const validateFields = () => {
+    checkNameIsInvalid()
+    checkPhoneIsInvalid()
+    checkEmailIsInvalid()
+    checkSiteIsInvalid()
+  }
+
   const handleSave = () => {
-    handleCreateUser()
-    handleAddUser(name, email, phone, site)
-    setShowModal(false)
+
+    validateFields()
+
+    if (name !== '' && email !== '' && phone !== '' && site !== '') {
+      handleCreateUser()
+      handleAddUser(name, email, phone, site)
+      setShowModal(false)
+    }
+  }
+
+  const checkNameIsInvalid = () => {
+    setNameError(name === '' ? true : false)
+  }
+
+  const checkPhoneIsInvalid = () => {
+    setPhoneError(phone === '' ? true : false)
+  }
+
+  const checkEmailIsInvalid = () => {
+    setEmailError(email === '' ? true : false)
+  } 
+
+  const checkSiteIsInvalid = () => {
+    setSiteError(site === '' ? true : false)
   }
 
   return (
-    <ModalWrapper setShowModal={setShowModal}>
-      <PageTitle title='Incluir Novo Usuário' />
+    <ModalWrapper
+      setShowModal={setShowModal}
+      heightMobile='420px'
+      heightDeskotop='355px'
+      widthMobile='83%'
+    >
+      <PageTitle title='Incluir novo usuário' />
       <InputsContainer>
         <TextFieldComponent
           label='Nome' 
           value={name} 
           placeholder='Nome' 
           setData={setName}
+          isError={nameError}
         />
         <TextFieldComponent
           label='Email' 
           value={email} 
           placeholder='Email' 
           setData={setEmail}
+          isError={emailError}
         />
       </InputsContainer>
       <InputsContainer>
@@ -68,17 +116,19 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
           value={phone} 
           placeholder='Telefone' 
           setData={setPhone}
+          isError={phoneError}
         />
         <TextFieldComponent
           label='Site' 
           value={site} 
           placeholder='Site' 
           setData={setSite}
+          isError={siteError}
         />
       </InputsContainer>
       <ButtonsContainer>
         <Button
-          title='Gravar'
+          title='Salvar'
           style={{backgroundColor: '#2E7D32', width: '100px'}}
           handleSave={handleSave}
         />

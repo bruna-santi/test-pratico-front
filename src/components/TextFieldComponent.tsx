@@ -7,14 +7,20 @@ interface ITextFieldComponent {
   value: string;
   placeholder: string;
   setData: React.Dispatch<React.SetStateAction<string>>;
+  isError: boolean;
 }
 
 const Input = styled(TextField)`
+  width: 48%;
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  width: 48%;
+
+  @media only screen and (max-width: 600px) {
+      width: 100%;
+      margin-bottom: 15px;
+  }
 `;
 
 const TextFieldComponent: React.FC<ITextFieldComponent> = ({
@@ -23,16 +29,19 @@ const TextFieldComponent: React.FC<ITextFieldComponent> = ({
   value,
   placeholder,
   setData,
+  isError,
 }) => {
   
   return (
     <Input
       label={label}
-      variant="outlined"
+      variant='outlined'
       type={type}
       value={value}
       placeholder={placeholder}
       onChange={(e) => setData(e.target.value)}
+      error={isError}
+      helperText={isError ? 'Campo Obrigatório' : ''}
     />
   )
 }

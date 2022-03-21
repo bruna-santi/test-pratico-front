@@ -5,6 +5,17 @@ interface IModalWrapper {
   children: any;
   style?: any;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  heightMobile?: string;
+  heightDeskotop?: string;
+  widthMobile?: string;
+  widthDesktop?: string;
+}
+
+interface IContent {
+  heightMobile?: string;
+  heightDeskotop?: string;
+  widthMobile?: string;
+  widthDesktop?: string;
 }
 
 const Container = styled.div`
@@ -19,23 +30,55 @@ const Container = styled.div`
     z-index: 100;
     padding: 0 20px;
     background-color: rgba(8, 8, 17, 0.1);
+
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
 `;
 
-const Content = styled.div`
+const Content = styled.div<IContent>`
     display: flex;
     flex-direction: column;
-    padding: 28px;
-    width: 550px;
-    height: 330px;
+    width: ${(props) => props.widthDesktop ? props.widthDesktop: '30%'};
+    height: ${(props) => props.heightDeskotop ? props.heightDeskotop : '330px'};
     background-color: white;
+    padding: 28px;
     border-radius: 10px;
+
+    @media only screen and (max-width: 700px) {
+      width: ${(props) => props.widthMobile ? props.widthMobile : '80%'};
+      height: ${(props) => props.heightMobile ? props.heightMobile : '330px'};
+      padding: 20px;
+    }
+
+    @media only screen and (max-width: 600px) {
+      width: ${(props) => props.widthMobile ? props.widthMobile : '83%'};
+      height: ${(props) => props.heightMobile ? props.heightMobile : '330px'};
+      padding: 20px;
+    }
 `;
 
-const ModalWrapper: React.FC<IModalWrapper> = ({children, style, setShowModal}) => {
+const ModalWrapper: React.FC<IModalWrapper> = ({
+  children,
+  style,
+  setShowModal,
+  heightMobile,
+  heightDeskotop,
+  widthMobile,
+  widthDesktop
+}) => {
   return (
     <Container>
-      <Content style={style}>
-      <ExitModalIcon setShowModal={setShowModal} style={{alignSelf: 'flex-end'}}/>
+      <Content
+        style={style}
+        heightMobile={heightMobile}
+        heightDeskotop={heightDeskotop}
+        widthMobile={widthMobile}
+        widthDesktop={widthDesktop}
+      >
+      <ExitModalIcon setShowModal={setShowModal} style={{alignSelf: 'flex-end', marginBottom: '10px'}}/>
         {children}
       </Content>
     </Container>

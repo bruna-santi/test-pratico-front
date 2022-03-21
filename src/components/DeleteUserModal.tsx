@@ -13,6 +13,10 @@ const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 52%;
+
+  @media only screen and (max-width: 600px) {
+      width: 77%;
+  }
 `;
 
 const DeleteUserModal: React.FC<IDeleteUserModal> = ({handleDeleteUser}) => {
@@ -24,7 +28,12 @@ const DeleteUserModal: React.FC<IDeleteUserModal> = ({handleDeleteUser}) => {
   }
 
   return (
-    <ModalWrapper setShowModal={setShowDeleteUserModal} style={{width: '500px', height: '160px'}}>
+    <ModalWrapper
+      setShowModal={setShowDeleteUserModal}
+      widthDesktop='28%'
+      heightMobile='140px'
+      heightDeskotop='160px'
+    >
       <PageTitle title='Deseja excluir o usuário?'/>
       <ButtonsContainer>
         <Button

@@ -8,7 +8,11 @@ const UserDetailsModal = () => {
   const {selectedUser, setShowUserDetailsModal} = useContext(ApplicationContext)
 
   return (
-    <ModalWrapper setShowModal={setShowUserDetailsModal} style={{width: '500px'}}>
+    <ModalWrapper
+      setShowModal={setShowUserDetailsModal}
+      widthDesktop='28%'
+      heightMobile='310px'
+    >
       <PageTitle title='Detalhes' />
       <DetailsData label='Nome' data={selectedUser.name} />
       <DetailsData label='Email' data={selectedUser.email} />

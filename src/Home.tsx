@@ -23,6 +23,10 @@ const Container = styled.div`
   width: 55%;
   height: 90%;
   margin-top: 50px;
+
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const Home = () => {
@@ -62,7 +66,7 @@ const Home = () => {
           handleDeleteUser={handleDeleteUser}
         />
         <Button
-          title='Adicionar Novo'
+          title='Adicionar novo'
           style={{
             backgroundColor:'#1976D2',
             width: '150px',
