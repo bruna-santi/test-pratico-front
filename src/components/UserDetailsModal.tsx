@@ -6,46 +6,46 @@ import ExitModalIcon from './ExitModalIcon';
 import PageTitle from './PageTitle';
 
 const ModalWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    padding: 0 20px;
-    background-color: rgba(8, 8, 17, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0 20px;
+  background-color: rgba(8, 8, 17, 0.1);
 
-    @media only screen and (max-width: 600px) {
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
-    }
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
-  const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 30%;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 330px;
+  background-color: #FFFFFF;
+  padding: 28px;
+  border-radius: 10px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 83%;
     height: 330px;
-    background-color: #FFFFFF;
-    padding: 28px;
-    border-radius: 10px;
+    padding: 20px;
+  }
 
-    @media only screen and (max-width: 1200px) {
-      width: 83%;
-      height: 330px;
-      padding: 20px;
-    }
+  @media only screen and (max-width: 600px) {
+    width: 83%;
+    padding: 20px;
+  }
 
-    @media only screen and (max-width: 600px) {
-      width: 83%;
-      padding: 20px;
-    }
-
-    @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1200px) {
     width: 50%;
   }
 
