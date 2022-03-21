@@ -59,7 +59,14 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   const [isFieldInvalid, setIsFieldInvalid] = useState<boolean>(false)
 
   const handleCreateUser = async () => {
-    await challengeApi.createUser({name, email, phone, site})
+    await challengeApi
+      .createUser({name, email, phone, site})
+      .then(() => {
+        handleAddUser(name, email, phone, site)
+        setShowModal(false)
+        setIsFieldInvalid(false)
+      })
+      .catch(error => console.log(error))
   }
 
   const validateFields = () => {
@@ -75,9 +82,6 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
 
     if (name !== '' && email !== '' && phone !== '' && site !== '') {
       handleCreateUser()
-      handleAddUser(name, email, phone, site)
-      setShowModal(false)
-      setIsFieldInvalid(false)
     } else {
       setIsFieldInvalid(true)
     }

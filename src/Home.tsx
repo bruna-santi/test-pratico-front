@@ -44,18 +44,23 @@ const Home = () => {
       })
       .catch(error => console.log(error))
   }
+  
+  const handleDeleteUser = async (userId: number) => {
+    await challengeApi
+    .deleteUser(userId)
+    .then(() => {
+      const filteredUsers = users.filter((user) => user.id !== userId)
+      setUsers(filteredUsers)
+    })
+    .catch(error => console.log(error))
+  }
 
   useEffect(() => {
     fetchUsers()
   }, [])
 
-  const handleDeleteUser = (userId: number) => {
-    const filteredUsers = users.filter((user) => user.id !== userId)
-    setUsers(filteredUsers)
-  }
-
   const handleAddUser = (name: string, email: string, phone: string, site: string) => {
-    users.push({name, email, phone, website: site, id: Math.random()})
+    users.push({name, email, phone, website: site, id: Math.round(Math.random()*1000)})
   }
 
   return (
