@@ -5,6 +5,7 @@ Construção de uma aplicação front-end usando ReactJS que apresenta:\
 - Modal com detalhes de um usuário
 - Modal para deletar um usuário
 - Modal de criação de um usuário<br>
+<br>
 Todos os dados foram consumidos da [API](https://jsonplaceholder.typicode.com).
 
 ## Responsividade
@@ -19,8 +20,8 @@ JavaScript\
 TypeScript\
 Axios\
 ContextAPI\
-Material UI<br>
-Styled Components
+Styled Components\
+Material UI
 
 ### Rodando o projeto localmente
 
