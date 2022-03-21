@@ -74,10 +74,11 @@ const Home = () => {
             severity="success"
             style={{
               alignSelf: 'center',
-              position: 'absolute',
+              position: 'fixed',
               top: '0',
               width: '90%',
-              maxWidth: '400px'
+              maxWidth: '400px',
+              zIndex: '100',
             }}
           >
             Usuário excluído com sucesso!
