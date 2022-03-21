@@ -77,7 +77,6 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   }
 
   const handleSave = () => {
-
     validateFields()
 
     if (name !== '' && email !== '' && phone !== '' && site !== '') {

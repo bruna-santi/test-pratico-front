@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import { IUser } from "../interfaces";
+import { createContext, useState } from 'react';
+import { IUser } from '../interfaces';
 
 interface IContext {
   selectedUser: IUser;
