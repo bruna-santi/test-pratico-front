@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { challengeApi } from '../api/ChallengeApi';
 import Button from './Button';
-import ModalWrapper from './ModalWrapper';
+import ExitModalIcon from './ExitModalIcon';
 import PageTitle from './PageTitle';
 import TextFieldComponent from './TextFieldComponent';
 
@@ -11,6 +11,59 @@ interface IAddNewModal {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleAddUser: (name: string, email: string, phone: string, site: string) => void;
 }
+
+const ModalWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0 20px;
+  background-color: rgba(8, 8, 17, 0.1);
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  max-width: 600px;
+  height: 330px;
+  background-color: #FFFFFF;
+  padding: 28px;
+  border-radius: 10px;
+
+  @media only screen and (max-width: 1200px) {
+    width: 70%;
+    height: 440px;
+    padding: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: 83%;
+    height: 330px;
+    padding: 20px;
+  }
+
+  @media only screen and (max-width: 800px) {
+    width: 80%;
+    height: 440px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    width: 80%;
+    height: 440px;
+  }
+`;
 
 const RequiredMessage = styled.span`
   font-size: 12px;
@@ -38,19 +91,20 @@ const ButtonsContainer = styled.div`
   margin-top: 15px;
 
   @media only screen and (max-width: 1600px) {
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 1340px) {
     width: 60%;
   }
+
 
   @media only screen and (max-width: 1200px) {
-    width: 45%;
-  }
-
-  @media only screen and (max-width: 950px) {
-    width: 60%;
+    width: 40%;
   }
 
   @media only screen and (max-width: 630px) {
-    width: 70%;
+    width: 50%;
   }
 
   @media only screen and (max-width: 450px) {
@@ -115,62 +169,60 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   }
 
   return (
-    <ModalWrapper
-      setShowModal={setShowModal}
-      heightMobile={isFieldInvalid ? '470px' : '440px'}
-      heightDeskotop='355px'
-      widthMobile='50%'
-    >
-      <PageTitle title='Incluir novo usuário' />
-      {isFieldInvalid && 
-        <RequiredMessage>* Campo obrigatório</RequiredMessage>
-      }
-      <InputsContainer>
-        <TextFieldComponent
-          label='Nome' 
-          value={name} 
-          placeholder='Nome' 
-          setData={setName}
-          isError={nameError}
-        />
-        <TextFieldComponent
-          label='Email' 
-          value={email} 
-          placeholder='Email' 
-          setData={setEmail}
-          isError={emailError}
-        />
-      </InputsContainer>
-      <InputsContainer>
-        <TextFieldComponent
-          label='Telefone'
-          type='number' 
-          value={phone} 
-          placeholder='Telefone' 
-          setData={setPhone}
-          isError={phoneError}
-        />
-        <TextFieldComponent
-          label='Site' 
-          value={site} 
-          placeholder='Site' 
-          setData={setSite}
-          isError={siteError}
-        />
-      </InputsContainer>
-      <ButtonsContainer>
-        <Button
-          title='Salvar'
-          style={{backgroundColor: '#2E7D32', width: '100px'}}
-          handleSave={handleSave}
-        />
-        <Button
-          title='Cancelar'
-          style={{backgroundColor: '#E5E5E5', color: '#34423D', width: '100px'}}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
-      </ButtonsContainer>
+    <ModalWrapper>
+      <Container>
+      <ExitModalIcon setShowModal={setShowModal} style={{alignSelf: 'flex-end', marginBottom: '10px'}}/>
+        <PageTitle title='Incluir novo usuário' />
+        {isFieldInvalid && 
+          <RequiredMessage>* Campo obrigatório</RequiredMessage>
+        }
+        <InputsContainer>
+          <TextFieldComponent
+            label='Nome' 
+            value={name} 
+            placeholder='Nome' 
+            setData={setName}
+            isError={nameError}
+          />
+          <TextFieldComponent
+            label='Email' 
+            value={email} 
+            placeholder='Email' 
+            setData={setEmail}
+            isError={emailError}
+          />
+        </InputsContainer>
+        <InputsContainer>
+          <TextFieldComponent
+            label='Telefone'
+            type='number' 
+            value={phone} 
+            placeholder='Telefone' 
+            setData={setPhone}
+            isError={phoneError}
+          />
+          <TextFieldComponent
+            label='Site' 
+            value={site} 
+            placeholder='Site' 
+            setData={setSite}
+            isError={siteError}
+          />
+        </InputsContainer>
+        <ButtonsContainer>
+          <Button
+            title='Salvar'
+            style={{backgroundColor: '#2E7D32', width: '100px'}}
+            handleSave={handleSave}
+          />
+          <Button
+            title='Cancelar'
+            style={{backgroundColor: '#E5E5E5', color: '#34423D', width: '100px'}}
+            showModal={showModal}
+            setShowModal={setShowModal}
+          />
+        </ButtonsContainer>
+      </Container>
     </ModalWrapper>
   )
 }

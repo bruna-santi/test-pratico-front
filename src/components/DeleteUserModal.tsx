@@ -26,9 +26,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 150px;
   max-width: 450px;
-  background-color: white;
+  height: 150px;
+  background-color: #FFFFFF;
   padding: 28px;
   border-radius: 10px;
 
