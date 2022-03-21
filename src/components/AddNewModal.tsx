@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { challengeApi } from '../api/ChallengeApi';
 import Button from './Button';
 import ExitModalIcon from './ExitModalIcon';
+import ModalWrapper from './ModalWrapper';
 import PageTitle from './PageTitle';
 import TextFieldComponent from './TextFieldComponent';
 
@@ -11,19 +12,6 @@ interface IAddNewModal {
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleAddUser: (name: string, email: string, phone: string, site: string) => void;
 }
-
-const ModalWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(8, 8, 17, 0.5);
-`;
 
 const Container = styled.div`
   display: flex;

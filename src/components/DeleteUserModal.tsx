@@ -3,24 +3,12 @@ import styled from 'styled-components';
 import { ApplicationContext } from '../context/ApplicationContextProvider';
 import Button from './Button';
 import ExitModalIcon from './ExitModalIcon';
+import ModalWrapper from './ModalWrapper';
 import PageTitle from './PageTitle';
 
 interface IDeleteUserModal {
   handleDeleteUser: (userId: number) => void;
 }
-
-const ModalWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  background-color: rgba(8, 8, 17, 0.5);
-`;
 
 const Container = styled.div`
   display: flex;
