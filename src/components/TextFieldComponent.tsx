@@ -16,7 +16,7 @@ const Input = styled(TextField)`
     -webkit-appearance: none;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1200px) {
     width: 100%;
     margin-bottom: 15px;
   }

@@ -8,6 +8,8 @@ interface IContext {
   setShowUserDetailsModal: any;
   showDeleteUserModal: boolean;
   setShowDeleteUserModal: any;
+  showDeleteMessage: boolean;
+  setShowDeleteMessage: any;
 }
 
 export const ApplicationContext = createContext<IContext>({
@@ -16,13 +18,16 @@ export const ApplicationContext = createContext<IContext>({
   showUserDetailsModal: false,
   setShowUserDetailsModal: '',
   showDeleteUserModal: false,
-  setShowDeleteUserModal: ''
+  setShowDeleteUserModal: '',
+  showDeleteMessage: false,
+  setShowDeleteMessage: '',
 })
 
 const ApplicationContextProvider: React.FC = ({ children }) => {
   const [selectedUser, setSelectedUser] = useState<IUser>({name: '', email: '', website: '', phone: '', id: 0})
   const [showUserDetailsModal, setShowUserDetailsModal] = useState<boolean>(false)
   const [showDeleteUserModal, setShowDeleteUserModal] = useState<boolean>(false)
+  const [showDeleteMessage, setShowDeleteMessage] = useState<boolean>(false)
 
   return (
     <ApplicationContext.Provider
@@ -33,6 +38,8 @@ const ApplicationContextProvider: React.FC = ({ children }) => {
         setShowUserDetailsModal,
         showDeleteUserModal,
         setShowDeleteUserModal,
+        showDeleteMessage,
+        setShowDeleteMessage,
       }}
     >
       {children}

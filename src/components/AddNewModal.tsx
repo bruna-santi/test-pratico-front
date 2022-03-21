@@ -25,7 +25,7 @@ const InputsContainer = styled.div`
   margin: 15px 0 15px 0;
   width: 100%;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1200px) {
     flex-direction: column;
     margin: 0;
   }
@@ -34,14 +34,26 @@ const InputsContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 40%;
+  width: 43%;
   margin-top: 15px;
 
-  @media only screen and (min-width: 400px), (max-width: 600px) {
-    width: 67%;
+  @media only screen and (max-width: 1600px) {
+    width: 60%;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 1200px) {
+    width: 45%;
+  }
+
+  @media only screen and (max-width: 950px) {
+    width: 60%;
+  }
+
+  @media only screen and (max-width: 630px) {
+    width: 70%;
+  }
+
+  @media only screen and (max-width: 450px) {
     width: 77%;
   }
 `;
@@ -107,7 +119,7 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
       setShowModal={setShowModal}
       heightMobile={isFieldInvalid ? '470px' : '440px'}
       heightDeskotop='355px'
-      widthMobile='83%'
+      widthMobile='50%'
     >
       <PageTitle title='Incluir novo usuário' />
       {isFieldInvalid && 

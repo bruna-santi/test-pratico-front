@@ -1,3 +1,4 @@
+import { Alert } from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { challengeApi } from './api/ChallengeApi';
@@ -31,7 +32,7 @@ const Container = styled.div`
 `;
 
 const Home = () => {
-  const {showUserDetailsModal, showDeleteUserModal} = useContext(ApplicationContext)
+  const {showUserDetailsModal, showDeleteUserModal, showDeleteMessage, setShowDeleteMessage} = useContext(ApplicationContext)
 
   const [users, setUsers] = useState<IUser[]>([])
   const [showAddNewModal, setShowAddNewModal] = useState<boolean>(false)
@@ -51,6 +52,8 @@ const Home = () => {
     .then(() => {
       const filteredUsers = users.filter((user) => user.id !== userId)
       setUsers(filteredUsers)
+      setShowDeleteMessage(true)
+      setTimeout(() => setShowDeleteMessage(false), 3000)
     })
     .catch(error => console.log(error))
   }
@@ -66,6 +69,20 @@ const Home = () => {
   return (
     <PageWrapper>
       <Container>
+        {showDeleteMessage && 
+          <Alert
+            severity="success"
+            style={{
+              alignSelf: 'center',
+              position: 'absolute',
+              top: '0',
+              width: '90%',
+              maxWidth: '400px'
+            }}
+          >
+            Usuário excluído com sucesso!
+          </Alert>
+        }
         <PageTitle title='Usuários'/>
         <UsersTable
           bodyData={users}
