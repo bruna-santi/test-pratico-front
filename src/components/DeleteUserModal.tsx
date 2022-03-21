@@ -14,8 +14,12 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
   width: 52%;
 
-  @media only screen and (max-width: 600px) {
-      width: 77%;
+  @media only screen and (min-width: 400px), (max-width: 600px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 90%;
   }
 `;
 

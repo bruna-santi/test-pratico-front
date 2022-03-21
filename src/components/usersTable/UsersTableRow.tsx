@@ -9,6 +9,10 @@ interface ITableBodyRow {
   handleDeleteUser: (userId: number) => void;
 }
 
+interface ITd {
+  isPadding: boolean;
+}
+
 const TrBody = styled.tr`
   display: flex;
   width: 100%;
@@ -20,7 +24,6 @@ const TrBody = styled.tr`
 
   .emailCell {
     justify-content: space-between;
-    margin-right: 12px;
   }
 
   .buttonCell {
@@ -28,17 +31,19 @@ const TrBody = styled.tr`
   }
 `;
 
-const Td = styled.td`
+const Td = styled.td<ITd>`
   position: relative;
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 33%;
   height: 65px;
-  margin-left: 12px;
+  padding-left: ${(props) => props.isPadding === true ? '12px' : 0};
   font-size: 12px;
   font-weight: 400;
   color: #587169;
   cursor: pointer;
+  word-break: break-all;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const UsersTableRow: React.FC<ITableBodyRow> = ({data}) => {
@@ -62,9 +67,9 @@ const UsersTableRow: React.FC<ITableBodyRow> = ({data}) => {
   return (
     <>
       <TrBody key={data.id}>
-        <Td className='nameCell' onClick={() => handleShowUserDetail()}>{data.name}</Td>
-        <Td className='emailCell' onClick={() => handleShowUserDetail()}>{data.email}</Td>
-        <Td className='buttonCell'>
+        <Td className='nameCell' onClick={() => handleShowUserDetail()} isPadding>{data.name}</Td>
+        <Td className='emailCell' onClick={() => handleShowUserDetail()} isPadding>{data.email}</Td>
+        <Td className='buttonCell' isPadding={false}>
           <Button
             title='Excluir'
             style={{backgroundColor: '#D32F2F'}}

@@ -23,9 +23,9 @@ const Th = styled.th`
 const UsersTableHead = () => {
   return (
     <TrHead>
-     <Th>Nome</Th>
-     <Th>Email</Th>
-     <Th></Th>
+      <Th>Nome</Th>
+      <Th>Email</Th>
+      <Th></Th>
     </TrHead>
   )
 }

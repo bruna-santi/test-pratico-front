@@ -47,12 +47,6 @@ const Content = styled.div<IContent>`
     padding: 28px;
     border-radius: 10px;
 
-    @media only screen and (max-width: 700px) {
-      width: ${(props) => props.widthMobile ? props.widthMobile : '80%'};
-      height: ${(props) => props.heightMobile ? props.heightMobile : '330px'};
-      padding: 20px;
-    }
-
     @media only screen and (max-width: 600px) {
       width: ${(props) => props.widthMobile ? props.widthMobile : '83%'};
       height: ${(props) => props.heightMobile ? props.heightMobile : '330px'};

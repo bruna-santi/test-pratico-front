@@ -12,6 +12,13 @@ interface IAddNewModal {
   handleAddUser: (name: string, email: string, phone: string, site: string) => void;
 }
 
+const RequiredMessage = styled.span`
+  font-size: 12px;
+  font-weight: 600;
+  color: #D32F2F;
+  margin-bottom: 10px;
+`;
+
 const InputsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -19,8 +26,8 @@ const InputsContainer = styled.div`
   width: 100%;
 
   @media only screen and (max-width: 600px) {
-      flex-direction: column;
-      margin: 0;
+    flex-direction: column;
+    margin: 0;
   }
 `;
 
@@ -30,8 +37,12 @@ const ButtonsContainer = styled.div`
   width: 40%;
   margin-top: 15px;
 
-  @media only screen and (max-width: 600px) {
-      width: 67%;
+  @media only screen and (min-width: 400px), (max-width: 600px) {
+    width: 67%;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 77%;
   }
 `;
 
@@ -45,10 +56,10 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   const [emailError, setEmailError] = useState<boolean>(false)
   const [phoneError, setPhoneError] = useState<boolean>(false)
   const [siteError, setSiteError] = useState<boolean>(false)
+  const [isFieldInvalid, setIsFieldInvalid] = useState<boolean>(false)
 
   const handleCreateUser = async () => {
-    await challengeApi
-      .createUser({name, email, phone, site})
+    await challengeApi.createUser({name, email, phone, site})
   }
 
   const validateFields = () => {
@@ -66,6 +77,9 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
       handleCreateUser()
       handleAddUser(name, email, phone, site)
       setShowModal(false)
+      setIsFieldInvalid(false)
+    } else {
+      setIsFieldInvalid(true)
     }
   }
 
@@ -88,11 +102,14 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   return (
     <ModalWrapper
       setShowModal={setShowModal}
-      heightMobile='420px'
+      heightMobile={isFieldInvalid ? '470px' : '440px'}
       heightDeskotop='355px'
       widthMobile='83%'
     >
       <PageTitle title='Incluir novo usuário' />
+      {isFieldInvalid && 
+        <RequiredMessage>* Campo obrigatório</RequiredMessage>
+      }
       <InputsContainer>
         <TextFieldComponent
           label='Nome' 

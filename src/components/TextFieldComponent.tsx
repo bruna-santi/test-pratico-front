@@ -12,14 +12,13 @@ interface ITextFieldComponent {
 
 const Input = styled(TextField)`
   width: 48%;
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
 
   @media only screen and (max-width: 600px) {
-      width: 100%;
-      margin-bottom: 15px;
+    width: 100%;
+    margin-bottom: 15px;
   }
 `;
 
@@ -41,7 +40,7 @@ const TextFieldComponent: React.FC<ITextFieldComponent> = ({
       placeholder={placeholder}
       onChange={(e) => setData(e.target.value)}
       error={isError}
-      helperText={isError ? 'Campo Obrigatório' : ''}
+      required
     />
   )
 }
