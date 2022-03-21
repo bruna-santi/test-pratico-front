@@ -1,16 +1,16 @@
 # Teste Prático Linear Sistemas
 
 Construção de uma aplicação front-end usando ReactJS que apresenta:\
-Tela de listagem de usuários\
-Modal com detalhes de um usuário\
-Modal para deletar um usuário\
-Modal de criação de um usuário\
+- Tela de listagem de usuários
+- Modal com detalhes de um usuário
+- Modal para deletar um usuário
+- Modal de criação de um usuário
 Todos os dados foram consumidos da [API](https://jsonplaceholder.typicode.com).
 
 ## Responsividade
 
 A aplicação possui responsividade para diferentes tamanhos de telas desktop e mobile.\
-É possível testar a responsividade utilizando a ferramenta de desenvolvimento dos navegadores (apertando a tecla F12).
+É possível testar a responsividade utilizando a ferramenta de desenvolvedor dos navegadores (apertando a tecla `F12`).
 
 ## Tecnologias utilizadas
 
@@ -19,8 +19,8 @@ JavaScript\
 TypeScript\
 Axios\
 ContextAPI\ 
-Styled Components\
-Material UI
+Material UI<br>
+Styled Components
 
 ### Rodando o projeto localmente
 
