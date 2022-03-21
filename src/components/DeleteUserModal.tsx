@@ -19,7 +19,7 @@ const ModalWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: rgba(8, 8, 17, 0.1);
+  background-color: rgba(8, 8, 17, 0.5);
 `;
 
 const Container = styled.div`
@@ -27,23 +27,16 @@ const Container = styled.div`
   flex-direction: column;
   width: 25%;
   max-width: 450px;
+  min-width: 350px;
   height: 150px;
   background-color: #FFFFFF;
   padding: 28px;
   border-radius: 10px;
 
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 600px) {
     width: 50%;
-    height: 140px;
-  }
-
-  @media only screen and (max-width: 800px) {
-    width: 80%;
-    height: 140px;
-  }
-
-  @media only screen and (max-width: 480px) {
-    width: 80%;
+    max-width: 300px;
+    min-width: 300px;
     height: 140px;
   }
 `;
@@ -52,26 +45,7 @@ const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 60%;
-
-  @media only screen and (max-width: 1500px) {
-    width: 70%;
-  }
-
-  @media only screen and (max-width: 1200px) {
-    width: 60%;
-  }
-
-  @media only screen and (max-width: 800px) {
-    width: 60%;
-  }
-
-  @media only screen and (max-width: 600px) {
-    width: 70%;
-  }
-
-  @media only screen and (max-width: 480px) {
-    width: 90%;
-  }
+  min-width: 270px;
 `;
 
 const DeleteUserModal: React.FC<IDeleteUserModal> = ({handleDeleteUser}) => {

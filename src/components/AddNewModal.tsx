@@ -22,21 +22,14 @@ const ModalWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  padding: 0 20px;
-  background-color: rgba(8, 8, 17, 0.1);
-
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
+  background-color: rgba(8, 8, 17, 0.5);
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
-  max-width: 600px;
+  max-width: 400px;
   height: 330px;
   background-color: #FFFFFF;
   padding: 28px;
@@ -87,29 +80,9 @@ const InputsContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 43%;
+  width: 55%;
   margin-top: 15px;
-
-  @media only screen and (max-width: 1600px) {
-    width: 50%;
-  }
-
-  @media only screen and (max-width: 1340px) {
-    width: 60%;
-  }
-
-
-  @media only screen and (max-width: 1200px) {
-    width: 40%;
-  }
-
-  @media only screen and (max-width: 630px) {
-    width: 50%;
-  }
-
-  @media only screen and (max-width: 450px) {
-    width: 77%;
-  }
+  min-width: 230px;
 `;
 
 const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAddUser}) => {
@@ -171,7 +144,7 @@ const AddNewModal: React.FC<IAddNewModal> = ({showModal, setShowModal, handleAdd
   return (
     <ModalWrapper>
       <Container>
-      <ExitModalIcon setShowModal={setShowModal} style={{alignSelf: 'flex-end', marginBottom: '10px'}}/>
+        <ExitModalIcon setShowModal={setShowModal} style={{alignSelf: 'flex-end', marginBottom: '10px'}}/>
         <PageTitle title='Incluir novo usuário' />
         {isFieldInvalid && 
           <RequiredMessage>* Campo obrigatório</RequiredMessage>

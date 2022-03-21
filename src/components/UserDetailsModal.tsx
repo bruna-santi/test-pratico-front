@@ -15,14 +15,7 @@ const ModalWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  padding: 0 20px;
-  background-color: rgba(8, 8, 17, 0.1);
-
-  @media only screen and (max-width: 600px) {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
+  background-color: rgba(8, 8, 17, 0.5);
 `;
 
 const Container = styled.div`
