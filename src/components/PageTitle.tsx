@@ -5,13 +5,13 @@ interface IPageTitle {
 }
 
 const Title = styled.h1`
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 600;
   color: #34423D;
   margin: 0 0 24px 0;
 
   @media only screen and (max-width: 600px) {
-    font-size: 24px;
+    font-size: 22px;
   }
 `;
 

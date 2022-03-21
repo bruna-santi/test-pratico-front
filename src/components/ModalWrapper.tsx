@@ -41,7 +41,7 @@ const Container = styled.div`
 const Content = styled.div<IContent>`
     display: flex;
     flex-direction: column;
-    width: ${(props) => props.widthDesktop ? props.widthDesktop: '30%'};
+    width: ${(props) => props.widthDesktop ? props.widthDesktop : '30%'};
     height: ${(props) => props.heightDeskotop ? props.heightDeskotop : '330px'};
     background-color: white;
     padding: 28px;
